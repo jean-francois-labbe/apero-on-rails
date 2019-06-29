@@ -1,29 +1,40 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <title>Apéro on Rails</title>
 
 <meta name="description" content="Apéro on Rails">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <meta name="author" content="Jean-François Labbé" />
 
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
+<link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/reveal.css">
   <link rel="stylesheet" href="css/theme/white.css" id="theme">
 
-
 <!-- For syntax highlighting -->
-  <link rel="stylesheet" href="lib/css/solarized-light.css">
+  <link rel="stylesheet" href="lib/css/monokai.css">
 
 <style>
+    .reveal h1 {
+      margin: 0;
+      font-size: 70px;
+    }
+    .reveal h2 {
+      font-size: 40px;
+    }
     .reveal .slides {
         text-align: left;
+    }
+    .reveal .slides > section, .reveal .slides > section > section {
+      padding: 10px 0;
+    }
+    .reveal pre code {
+	max-height: initial;
     }
     .reveal .slides section>* {
         margin-left: 0;
@@ -42,16 +53,15 @@
 </style>
 
 
-<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-<script>
-  document.write( '<link rel="stylesheet" href="css/print/' +
-    ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) +
-    '.css" type="text/css" media="print">' );
-</script>
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
 
-<!--[if lt IE 9]>
-<script src="lib/js/html5shiv.js"></script>
-<![endif]-->
 </head>
 
 <body>
@@ -102,17 +112,31 @@
 <li>Tout est Objet</li>
 </ul>
 </section>
+<section id="coinci" class="level2">
+<h2>Coinci</h2>
+<pre><code># Java
+public class HelloWorld {
+    public static void main(String[] args)
+    {
+        for (int i = 0; i &lt; 3; i++)
+        {
+            System.out.println(&quot;Hello, world!&quot;);
+        }
+    }
+}
+
+# Ruby
+3.times do
+  puts &quot;Hello, world!&quot;
+end</code></pre>
+</section>
 <section id="ruby-basics" class="level2">
 <h2>Ruby basics</h2>
-<pre><code>index = 100 # Déclaration de variable
-
-welcome = &quot;Hello World&quot;
+<pre><code>welcome = &quot;Hello World&quot;
 
 status = :in_progress # Symbole
 
-array = [1, 2, 3]
-
-array2 = [1, &quot;Bonjour&quot;, nil] # Tableau non typé
+array = [1, &quot;Bonjour&quot;, nil] # Tableau non typé
 
 hash = { title: &quot;Apéro&quot;, content: &quot;Ruby on Rails&quot;, attendees: 27 }
 
@@ -124,24 +148,6 @@ nil # représente null</code></pre>
 
 array.map { |number| number.abs } # =&gt; [1, 2, 3]
      .map { |number| number * 2 } # =&gt; [2, 4, 6]</code></pre>
-</section>
-<section id="fonctions" class="level2">
-<h2>Fonctions</h2>
-<pre><code>def welcome
-  puts &quot;Welcome here&quot;
-end
-
-welcome # =&gt; Welcome here
-
-welcome() # =&gt; Welcome here
-
-def welcome(name)
-  puts &quot;Welcome #{name}&quot;
-end
-
-welcome &quot;bob&quot; # =&gt; Welcome bob
-
-welcome(&quot;bob&quot;) # =&gt; Welcome bob</code></pre>
 </section>
 <section id="keyword-arguments" class="level2">
 <h2>Keyword arguments</h2>
@@ -186,7 +192,7 @@ world.name = &quot;new world&quot; # =&gt; &quot;new world&quot;</code></pre>
 <h2>Class</h2>
 <pre><code>class World
   attr_accessor :name
-  
+
   def initialize(name)
     @name = name # Instance variable
   end
@@ -219,12 +225,218 @@ nil.nil? # =&gt; NilClass</code></pre>
 <p>Shopify: 600_000 site marchands, 80_000 req/s (max) <a href="https://engineering.shopify.com/blogs/engineering/e-commerce-at-scale-inside-shopifys-tech-stack">Source 2018</a></p>
 </div>
 </section>
+<section id="qui-utilise-en-open-source" class="level2">
+<h2>Qui utilise En Open Source</h2>
+<p><a href="https://github.com/thepracticaldev/dev.to">Dev.to</a>, <a href="https://github.com/discourse/discourse">Discourse</a>, <a href="https://github.com/alphagov/e-petitions">E-petitions</a>, <a href="https://gitlab.com/gitlab-org/gitlab-ce">Gitlab</a>, <a href="https://github.com/tootsuite/mastodon">Mastodon</a>, <a href="https://github.com/rubygems/rubygems.org">Rubygems</a>…</p>
 </section>
-<section id="rails-philosophie" class="level1">
-<h1>Rails Philosophie</h1>
+<section id="présentation" class="level2">
+<h2>Présentation</h2>
 <ul>
-<li></li>
+<li>Sélection d’outils</li>
+<li>Convention over Configuration</li>
+<li>DRY (don’t repeat yourself)</li>
+<li>CRUD (Create, Read, Update, Delete)</li>
+<li>REST (Representational state transfer)</li>
+<li>Basé sur Rack <a href="https://rack.github.io/">Ruby Webserver Interface</a></li>
 </ul>
+</section>
+<section id="rails-6.0" class="level2">
+<h2>Rails 6.0</h2>
+<ul>
+<li>Parallel testing</li>
+<li>Wepacker</li>
+<li>Multiple databases</li>
+<li>ActionMailbox</li>
+<li>ActionText</li>
+</ul>
+</section>
+<section id="avantages" class="level2">
+<h2>Avantages</h2>
+<ul>
+<li>Développement rapide</li>
+<li>Beaucoup de librairies</li>
+<li>Maintenabilité</li>
+<li>Intégrations (front, apis, services)</li>
+<li>Tests</li>
+</ul>
+</section>
+<section id="pour-quel-projet" class="level2">
+<h2>Pour quel projet</h2>
+<ul>
+<li>Une appli web</li>
+<li>E-commerce</li>
+<li>Prototypes</li>
+</ul>
+</section>
+<section id="structure" class="level2">
+<h2>Structure</h2>
+<pre><code>├── app
+│   ├── assets
+│   ├── channels
+│   ├── controllers
+│   ├── helpers
+│   ├── javascript
+│   ├── jobs
+│   ├── mailers
+│   ├── models
+│   └── views
+├── Gemfile
+├── db
+│   └── migrate</code></pre>
+</section>
+<section id="structure-1" class="level2">
+<h2>Structure</h2>
+<pre><code>├── log
+├── public
+├── test
+│   ├── channels
+│   ├── controllers
+│   ├── fixtures
+│   ├── helpers
+│   ├── integration
+│   ├── mailers
+│   ├── models
+│   ├── system</code></pre>
+</section>
+<section id="les-outils" class="level2">
+<h2>Les outils</h2>
+<ul>
+<li>Migrations de la base de données</li>
+<li>Gestionnaire de dépendances</li>
+<li>Générateurs</li>
+<li>Console</li>
+</ul>
+</section>
+<section id="les-gems" class="level2">
+<h2>Les Gems</h2>
+<ul>
+<li>Administration: Administrate, ActiveAdmin</li>
+<li>Authentification: Devise</li>
+<li>Autorisation: ActionPolicy, CanCanCan, Pundit</li>
+<li>Async jobs: Sidekick</li>
+<li>Login Google, Facebook, Twitter: Omniauth</li>
+</ul>
+</section>
+<section id="les-gems-2" class="level2">
+<h2>Les Gems 2</h2>
+<ul>
+<li>Elasticsearch: Searchkick</li>
+<li>Feature flags: Flipper</li>
+<li>Filtering: Ransack</li>
+<li>Kafka: Karafka</li>
+<li>Mock http: Vcr</li>
+</ul>
+</section>
+<section id="erb-template-des-vues" class="level2">
+<h2>ERB: Template des vues</h2>
+<h1>
+Apéro on Rails
+</h1>
+<p>
+Time: &lt;%= Time.now %&gt;
+</p>
+</section>
+<section id="configroutes.rb" class="level2">
+<h2>config/routes.rb</h2>
+<pre><code>Rails.application.routes.draw do
+  resources :posts
+end</code></pre>
+</section>
+<section id="routes" class="level2">
+<h2>Routes</h2>
+<table>
+<thead>
+<tr class="header">
+<th>url</th>
+<th>Posts controlleur</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GET /posts</td>
+<td>#index</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>GET /posts/:id</td>
+<td>#show</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GET /posts/new</td>
+<td>#new</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>POST /posts</td>
+<td>#create</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>GET /posts/:id/edit</td>
+<td>#edit</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>PUT /posts/id</td>
+<td>#update</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>DELETE /posts/id</td>
+<td>#destroy</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="créons-un-blog" class="level2">
+<h2>Créons un blog</h2>
+<p>Un blog est composé d’articles Un article a des commentaires</p>
+</section>
+<section id="créer-une-resource" class="level2">
+<h2>Créer une resource</h2>
+<pre><code>rails generate scaffold article title content:text</code></pre>
+</section>
+<section id="une-migration" class="level2">
+<h2>Une migration</h2>
+<pre><code>class CreateArticles &lt; ActiveRecord::Migration[6.0]
+  def change
+    create_table :articles do |t|
+      t.string :title
+      t.text :content
+
+      t.timestamps
+    end
+  end
+end</code></pre>
+</section>
+<section id="un-modèle" class="level2">
+<h2>Un Modèle</h2>
+<pre><code>class Article &lt; ApplicationRecord
+end</code></pre>
+<p>vide?</p>
+</section>
+<section id="controlleur" class="level2">
+<h2>Controlleur</h2>
+</section>
 </section>
 </div>
 
@@ -240,26 +452,25 @@ nil.nil? # =&gt; NilClass</code></pre>
     slideNumber: true,
     center: false,
     history: true,
+    hash: true,
+    center: false,
     showNotes: true,
     width: 1200,
+    mouseWheel: true,
 
   // available themes are in /css/theme
       theme: Reveal.getQueryHash().theme || 'white',
   
   // default/cube/page/concave/zoom/linear/fade/none
-      transition: Reveal.getQueryHash().transition || 'linear',
+      transition: Reveal.getQueryHash().transition || 'none',
   
   // Optional libraries used to extend on reveal.js
-  dependencies: [
-    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-    { src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-    { src: 'plugin/highlight/highlight.js', async: true, callback: function() {
-      hljs.initHighlightingOnLoad(); } },
-    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-    // { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
-  ]
+dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
   });
 
 </script>

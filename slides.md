@@ -22,17 +22,32 @@
 * Orienté Objet
 * Tout est Objet
 
-## Ruby basics
+## Coinci
 
-    index = 100 # Déclaration de variable
+    # Java
+    public class HelloWorld {
+        public static void main(String[] args)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                System.out.println("Hello, world!");
+            }
+        }
+    }
+    
+    # Ruby
+    3.times do
+      puts "Hello, world!"
+    end
+
+
+## Ruby basics
 
     welcome = "Hello World"
 
     status = :in_progress # Symbole
 
-    array = [1, 2, 3]
-
-    array2 = [1, "Bonjour", nil] # Tableau non typé
+    array = [1, "Bonjour", nil] # Tableau non typé
 
     hash = { title: "Apéro", content: "Ruby on Rails", attendees: 27 }
 
@@ -45,24 +60,6 @@
     array.map { |number| number.abs } # => [1, 2, 3]
          .map { |number| number * 2 } # => [2, 4, 6]
 
-
-## Fonctions
-
-    def welcome
-      puts "Welcome here"
-    end
-
-    welcome # => Welcome here
-
-    welcome() # => Welcome here
-
-    def welcome(name)
-      puts "Welcome #{name}"
-    end
-
-    welcome "bob" # => Welcome bob
-
-    welcome("bob") # => Welcome bob
 
 ## Keyword arguments
 
@@ -107,12 +104,12 @@
 
     class World
       attr_accessor :name
-      
+
       def initialize(name)
         @name = name # Instance variable
       end
     end
-    
+
     world = World.new("level 1")
     world.name # => "level 1"
     world.name = "new world" # => "new world"
@@ -120,11 +117,11 @@
 ## Tout est Objet
 
     1.class # => Integer
-    
+
     "hello".class # => String
-    
+
     1.nil? # => false
-    
+
     nil.nil? # => NilClass
 
 # Rails
@@ -141,6 +138,146 @@ Rails doesn't scale?
 Shopify: 600_000 site marchands, 80_000 req/s (max) [Source 2018](https://engineering.shopify.com/blogs/engineering/e-commerce-at-scale-inside-shopifys-tech-stack)
 </div>
 
-# Rails Philosophie
+## Qui utilise En Open Source
 
-* 
+[Dev.to](https://github.com/thepracticaldev/dev.to),
+[Discourse](https://github.com/discourse/discourse),
+[E-petitions](https://github.com/alphagov/e-petitions),
+[Gitlab](https://gitlab.com/gitlab-org/gitlab-ce),
+[Mastodon](https://github.com/tootsuite/mastodon),
+[Rubygems](https://github.com/rubygems/rubygems.org)...
+
+
+## Présentation
+
+* Sélection d'outils
+* Convention over Configuration
+* DRY (don't repeat yourself)
+* CRUD (Create, Read, Update, Delete)
+* REST (Representational state transfer)
+* Basé sur Rack [Ruby Webserver Interface](https://rack.github.io/)
+
+## Rails 6.0
+* Parallel testing
+* Wepacker
+* Multiple databases
+* ActionMailbox
+* ActionText
+
+## Avantages
+* Développement rapide
+* Beaucoup de librairies
+* Maintenabilité
+* Intégrations (front, apis, services)
+* Tests
+
+## Pour quel projet
+* Une appli web
+* E-commerce
+* Prototypes
+
+## Structure
+
+    ├── app
+    │   ├── assets
+    │   ├── channels
+    │   ├── controllers
+    │   ├── helpers
+    │   ├── javascript
+    │   ├── jobs
+    │   ├── mailers
+    │   ├── models
+    │   └── views
+    ├── Gemfile
+    ├── db
+    │   └── migrate
+
+## Structure
+
+    ├── log
+    ├── public
+    ├── test
+    │   ├── channels
+    │   ├── controllers
+    │   ├── fixtures
+    │   ├── helpers
+    │   ├── integration
+    │   ├── mailers
+    │   ├── models
+    │   ├── system
+    
+## Les outils
+* Migrations de la base de données
+* Gestionnaire de dépendances
+* Générateurs
+* Console
+
+## Les Gems
+* Administration: Administrate, ActiveAdmin
+* Authentification: Devise
+* Autorisation: ActionPolicy, CanCanCan, Pundit
+* Async jobs: Sidekick
+* Login Google, Facebook, Twitter: Omniauth
+
+## Les Gems 2
+* Elasticsearch: Searchkick
+* Feature flags: Flipper
+* Filtering: Ransack
+* Kafka: Karafka
+* Mock http: Vcr
+
+## ERB: Template des vues
+
+<h1>Apéro on Rails</h1>
+<p>Time: <%= Time.now %></p>
+
+## config/routes.rb
+```
+Rails.application.routes.draw do
+  resources :posts
+end
+```
+## Routes
+| url                    | Posts controlleur  |   |   |   |
+|------------------------|--------------------|---|---|---|
+|GET    /posts           | #index             |   |   |   |
+|GET    /posts/:id       | #show              |   |   |   |
+|GET    /posts/new       | #new               |   |   |   |
+|POST   /posts           | #create            |   |   |   |
+|GET    /posts/:id/edit  | #edit              |   |   |   |
+|PUT    /posts/id        | #update            |   |   |   |
+|DELETE /posts/id        | #destroy           |   |   |   |
+
+
+
+## Créons un blog
+
+Un blog est composé d'articles
+Un article a des commentaires
+
+## Créer une resource
+
+    rails generate scaffold article title content:text
+
+## Une migration
+
+    class CreateArticles < ActiveRecord::Migration[6.0]
+      def change
+        create_table :articles do |t|
+          t.string :title
+          t.text :content
+ 
+          t.timestamps
+        end
+      end
+    end
+
+
+## Un Modèle
+
+    class Article < ApplicationRecord
+    end
+
+vide?
+
+## Controlleur
