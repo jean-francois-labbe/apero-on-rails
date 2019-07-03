@@ -228,8 +228,45 @@ Shopify: 600_000 site marchands, 80_000 req/s (max) [Source 2018](https://engine
 
 ## ERB: Template des vues
 
-<h1>Apéro on Rails</h1>
-<p>Time: <%= Time.now %></p>
+    <h1>Apéro on Rails</h1>
+    <p>Time: <%= Time.now %></p>
+
+## ERB: Template des vues
+
+controllers/posts_controller.rb
+
+    def index
+      @posts = Post.all
+    end
+
+posts/index.html.erb
+
+    <h1>Les posts</h1>
+    <% @posts.each do |post| %>
+      <h2><%= @post.title %></h2>
+      <p><%= @post.content %></p>
+    <% end %>
+
+## ERB: Template des vues
+
+controllers/posts_controller.rb
+
+    def index
+      @posts = Post.all
+    end
+
+posts/index.html.erb
+
+    <h1>Les posts</h1>
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+
+posts/_post.html.erb
+
+    <h2><%= @post.title %></h2>
+    <p><%= @post.content %></p>
+
 
 ## config/routes.rb
 ```
@@ -238,15 +275,15 @@ Rails.application.routes.draw do
 end
 ```
 ## Routes
-| url                    | Posts controlleur  |   |   |   |
-|------------------------|--------------------|---|---|---|
-|GET    /posts           | #index             |   |   |   |
-|GET    /posts/:id       | #show              |   |   |   |
-|GET    /posts/new       | #new               |   |   |   |
-|POST   /posts           | #create            |   |   |   |
-|GET    /posts/:id/edit  | #edit              |   |   |   |
-|PUT    /posts/id        | #update            |   |   |   |
-|DELETE /posts/id        | #destroy           |   |   |   |
+| url                    | Posts controlleur  |
+|------------------------|--------------------|
+|GET    /posts           | #index             |
+|GET    /posts/:id       | #show              |
+|GET    /posts/new       | #new               |
+|POST   /posts           | #create            |
+|GET    /posts/:id/edit  | #edit              |
+|PUT    /posts/id        | #update            |
+|DELETE /posts/id        | #destroy           |
 
 
 

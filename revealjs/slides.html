@@ -329,12 +329,36 @@ nil.nil? # =&gt; NilClass</code></pre>
 </section>
 <section id="erb-template-des-vues" class="level2">
 <h2>ERB: Template des vues</h2>
-<h1>
-Apéro on Rails
-</h1>
-<p>
-Time: &lt;%= Time.now %&gt;
-</p>
+<pre><code>&lt;h1&gt;Apéro on Rails&lt;/h1&gt;
+&lt;p&gt;Time: &lt;%= Time.now %&gt;&lt;/p&gt;</code></pre>
+</section>
+<section id="erb-template-des-vues-1" class="level2">
+<h2>ERB: Template des vues</h2>
+<p>controllers/posts_controller.rb</p>
+<pre><code>def index
+  @posts = Post.all
+end</code></pre>
+<p>posts/index.html.erb</p>
+<pre><code>&lt;h1&gt;Les posts&lt;/h1&gt;
+&lt;% @posts.each do |post| %&gt;
+  &lt;h2&gt;&lt;%= @post.title %&gt;&lt;/h2&gt;
+  &lt;p&gt;&lt;%= @post.content %&gt;&lt;/p&gt;
+&lt;% end %&gt;</code></pre>
+</section>
+<section id="erb-template-des-vues-2" class="level2">
+<h2>ERB: Template des vues</h2>
+<p>controllers/posts_controller.rb</p>
+<pre><code>def index
+  @posts = Post.all
+end</code></pre>
+<p>posts/index.html.erb</p>
+<pre><code>&lt;h1&gt;Les posts&lt;/h1&gt;
+&lt;% @posts.each do |post| %&gt;
+  &lt;%= render post %&gt;
+&lt;% end %&gt;</code></pre>
+<p>posts/_post.html.erb</p>
+<pre><code>&lt;h2&gt;&lt;%= @post.title %&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;%= @post.content %&gt;&lt;/p&gt;</code></pre>
 </section>
 <section id="configroutes.rb" class="level2">
 <h2>config/routes.rb</h2>
@@ -349,60 +373,36 @@ end</code></pre>
 <tr class="header">
 <th>url</th>
 <th>Posts controlleur</th>
-<th></th>
-<th></th>
-<th></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>GET /posts</td>
 <td>#index</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr class="even">
 <td>GET /posts/:id</td>
 <td>#show</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td>GET /posts/new</td>
 <td>#new</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr class="even">
 <td>POST /posts</td>
 <td>#create</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td>GET /posts/:id/edit</td>
 <td>#edit</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr class="even">
 <td>PUT /posts/id</td>
 <td>#update</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 <tr class="odd">
 <td>DELETE /posts/id</td>
 <td>#destroy</td>
-<td></td>
-<td></td>
-<td></td>
 </tr>
 </tbody>
 </table>
