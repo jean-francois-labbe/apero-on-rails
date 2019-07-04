@@ -83,15 +83,14 @@
 </section>
 
 
-<section id="au-menu" class="level1">
-<h1>Au menu</h1>
-<ul>
-<li>What is Rails?</li>
-<li>Démo</li>
-</ul>
+<section id="apéro" class="level1">
+<h1>Apéro!</h1>
+<p>Dans 45 minutes</p>
+<p>1 - What is Ruby on Rails?</p>
+<p>2 - Démo</p>
 </section>
-<section id="what-is-rails" class="level1">
-<h1>What is rails</h1>
+<section id="what-is-ruby-on-rails" class="level1">
+<h1>What is Ruby on Rails</h1>
 <ul>
 <li>Framework d’application web type MVC</li>
 <li>Langage Ruby</li>
@@ -112,8 +111,8 @@
 <li>Tout est Objet</li>
 </ul>
 </section>
-<section id="coinci" class="level2">
-<h2>Coinci</h2>
+<section id="concis" class="level2">
+<h2>Concis</h2>
 <pre><code># Java
 public class HelloWorld {
     public static void main(String[] args)
@@ -141,66 +140,6 @@ array = [1, &quot;Bonjour&quot;, nil] # Tableau non typé
 hash = { title: &quot;Apéro&quot;, content: &quot;Ruby on Rails&quot;, attendees: 27 }
 
 nil # représente null</code></pre>
-</section>
-<section id="ruby-basics-1" class="level2">
-<h2>Ruby basics</h2>
-<pre><code>array = [-1, -2, -3]
-
-array.map { |number| number.abs } # =&gt; [1, 2, 3]
-     .map { |number| number * 2 } # =&gt; [2, 4, 6]</code></pre>
-</section>
-<section id="keyword-arguments" class="level2">
-<h2>Keyword arguments</h2>
-<pre><code>def welcome(name: &quot;bob&quot;)
-  puts &quot;Welcome #{name}&quot;
-end
-
-welcome # =&gt; Welcome bob
-
-welcome(&quot;john&quot;) # =&gt; Welcome john</code></pre>
-</section>
-<section id="fonctions-names" class="level2">
-<h2>Fonctions names</h2>
-<pre><code>def saved?
-  true
-end
-
-def overwrite!
-  ...
-end</code></pre>
-</section>
-<section id="class" class="level2">
-<h2>Class</h2>
-<pre><code>class World
-  def initialize(name)
-    @name = name # Instance variable
-  end
-
-  def name
-    @name
-  end
-
-  def name=(name)
-    @name = name
-  end
-end
-world = World.new(&quot;level 1&quot;)
-world.name # =&gt; &quot;level 1&quot;
-world.name = &quot;new world&quot; # =&gt; &quot;new world&quot;</code></pre>
-</section>
-<section id="class-1" class="level2">
-<h2>Class</h2>
-<pre><code>class World
-  attr_accessor :name
-
-  def initialize(name)
-    @name = name # Instance variable
-  end
-end
-
-world = World.new(&quot;level 1&quot;)
-world.name # =&gt; &quot;level 1&quot;
-world.name = &quot;new world&quot; # =&gt; &quot;new world&quot;</code></pre>
 </section>
 <section id="tout-est-objet" class="level2">
 <h2>Tout est Objet</h2>
@@ -258,6 +197,14 @@ nil.nil? # =&gt; NilClass</code></pre>
 <li>Maintenabilité</li>
 <li>Intégrations (front, apis, services)</li>
 <li>Tests</li>
+</ul>
+</section>
+<section id="inconvénients" class="level2">
+<h2>Inconvénients</h2>
+<ul>
+<li>Performances</li>
+<li>Peut être lourd pour des besoins simples</li>
+<li>Développeurs?</li>
 </ul>
 </section>
 <section id="pour-quel-projet" class="level2">
@@ -409,17 +356,18 @@ end</code></pre>
 </section>
 <section id="créons-un-blog" class="level2">
 <h2>Créons un blog</h2>
-<p>Un blog est composé d’articles Un article a des commentaires</p>
+<p>Un blog est composé de posts</p>
+<p>Un post a des commentaires</p>
 </section>
 <section id="créer-une-resource" class="level2">
 <h2>Créer une resource</h2>
-<pre><code>rails generate scaffold article title content:text</code></pre>
+<pre><code>rails generate scaffold post title content:text</code></pre>
 </section>
 <section id="une-migration" class="level2">
 <h2>Une migration</h2>
 <pre><code>class CreateArticles &lt; ActiveRecord::Migration[6.0]
   def change
-    create_table :articles do |t|
+    create_table :posts do |t|
       t.string :title
       t.text :content
 
@@ -430,12 +378,78 @@ end</code></pre>
 </section>
 <section id="un-modèle" class="level2">
 <h2>Un Modèle</h2>
-<pre><code>class Article &lt; ApplicationRecord
+<pre><code>class Post &lt; ApplicationRecord
 end</code></pre>
 <p>vide?</p>
 </section>
-<section id="controlleur" class="level2">
-<h2>Controlleur</h2>
+<section id="live-démo" class="level2">
+<h2>Live Démo</h2>
+</section>
+</section>
+<section id="des-questions" class="level1">
+<h1>Des questions?</h1>
+</section>
+<section id="ruby-1" class="level1">
+<h1>Ruby</h1>
+<section id="ruby-basics-1" class="level2">
+<h2>Ruby basics</h2>
+<pre><code>array = [-1, -2, -3]
+
+array.map { |number| number.abs } # =&gt; [1, 2, 3]
+     .map { |number| number * 2 } # =&gt; [2, 4, 6]</code></pre>
+</section>
+<section id="keyword-arguments" class="level2">
+<h2>Keyword arguments</h2>
+<pre><code>def welcome(name: &quot;bob&quot;)
+  puts &quot;Welcome #{name}&quot;
+end
+
+welcome # =&gt; Welcome bob
+
+welcome(&quot;john&quot;) # =&gt; Welcome john</code></pre>
+</section>
+<section id="fonctions-names" class="level2">
+<h2>Fonctions names</h2>
+<pre><code>def saved?
+  true
+end
+
+def overwrite!
+  ...
+end</code></pre>
+</section>
+<section id="class" class="level2">
+<h2>Class</h2>
+<pre><code>class World
+  def initialize(name)
+    @name = name # Instance variable
+  end
+
+  def name
+    @name
+  end
+
+  def name=(name)
+    @name = name
+  end
+end
+world = World.new(&quot;level 1&quot;)
+world.name # =&gt; &quot;level 1&quot;
+world.name = &quot;new world&quot; # =&gt; &quot;new world&quot;</code></pre>
+</section>
+<section id="class-1" class="level2">
+<h2>Class</h2>
+<pre><code>class World
+  attr_accessor :name
+
+  def initialize(name)
+    @name = name # Instance variable
+  end
+end
+
+world = World.new(&quot;level 1&quot;)
+world.name # =&gt; &quot;level 1&quot;
+world.name = &quot;new world&quot; # =&gt; &quot;new world&quot;</code></pre>
 </section>
 </section>
 </div>
